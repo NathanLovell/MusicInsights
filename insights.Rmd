@@ -63,3 +63,24 @@ Person$time_submitted <- as.POSIXlt(parse_datetime(Person$time_submitted, format
 Person$time_submitted[1]$min
 
 ```
+
+Converting columns into factors
+
+```{r}
+Person$academic_level <- as.factor(Person$academic_level)
+levels(Person$academic_level)
+Person$academic_major <- as.factor(Person$academic_major)
+levels(Person$academic_major)[levels(Person$academic_major) == "Computer information systems"] <- "Computer Information Systems"
+levels(Person$academic_major)
+```
+
+
+Now I will create the Ratings table
+pseudonym/artist_song/rating
+
+```{r}
+gathered_ratings <- gather(preferences, key = "artist_song", value = "Rating", 3:45)
+Ratings <- tibble(pseudonym=gathered_ratings$'What was your pseudonym?', artist_song=gathered_ratings$artist_song, rating=gathered_ratings$Rating)
+
+
+```
