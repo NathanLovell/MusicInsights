@@ -76,11 +76,10 @@ levels(Person$academic_major)
 
 
 Now I will create the Ratings table
-pseudonym/artist_song/rating
-
+First I gather key:values along columns 3-45
+then create a tibble renaming and using only the columns that I want. (No time)
 ```{r}
-gathered_ratings <- gather(preferences, key = "artist_song", value = "Rating", 3:45)
-Ratings <- tibble(pseudonym=gathered_ratings$'What was your pseudonym?', artist_song=gathered_ratings$artist_song, rating=gathered_ratings$Rating)
-
-
+Ratings <- gather(preferences, "artist_song", "Rating", 3:45)
+Ratings <- tibble(pseudonym=Ratings$'What was your pseudonym?', artist_song=Ratings$artist_song, rating=Ratings$Rating)
+colnames(Ratings)
 ```
